@@ -1,13 +1,15 @@
 import sys
+import os
 import pygame
-
+from tkinter import *
+from tkinter.filedialog import askopenfilename
 
 from emulation import cpu
 
 def header():
-	print("\tChip8 Emulator")
-	print("\tAuthor: aadithvmenon")
-	print("\tgithub.com/cysys")
+	print("Chip8 Emulator")
+	print("Author: aadithvmenon")
+	print("github.com/cysys")
 
 def handle_keypress(chip, key, down):
 	if   key == pygame.K_1: chip.key_handler(0x1, down)
@@ -46,12 +48,19 @@ def draw_screen(DISPLAYSURF, chip):
 
 def main():
 	header()
+	root = Tk()
 	pygame.init()
 
 	chip = cpu()
 
 	
-	filename = sys.argv[1]
+	#filename = sys.argv[1]
+	
+	filename = askopenfilename(initialdir=os.getcwd(),
+                           filetypes =[("All Files","*")]),
+                           title = "Choose a file."
+                           )
+	root.destroy()
 	DISPLAYSURF = pygame.display.set_mode((640, 320))
 	pygame.display.set_caption('Chip8 Emulator |  |^anda')
 	chip.load_rom(filename)
