@@ -56,10 +56,8 @@ def main():
 	
 	#filename = sys.argv[1]
 	
-	filename = askopenfilename(initialdir=os.getcwd(),
-                           filetypes =[("All Files","*")]),
-                           title = "Choose a file."
-                           )
+	filename = askopenfilename(initialdir=os.getcwd(),filetypes =[("Chip8 ROM","*.c8")],title = "Choose a file.")
+
 	root.destroy()
 	DISPLAYSURF = pygame.display.set_mode((640, 320))
 	pygame.display.set_caption('Chip8 Emulator |  |^anda')
@@ -68,7 +66,6 @@ def main():
 	on = True
 
 	while on:
-		#pygame.draw.rect(DISPLAYSURF, color, pygame.Rect(10, 10, 100, 100), 10)
 		chip.update_time()
 
 		if not chip.opcode_decode():
