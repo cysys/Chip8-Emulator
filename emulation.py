@@ -40,8 +40,6 @@ class cpu:
 
 	def load_rom(self, filename):
 
-		addr = 0x200 	# program space starts at address 0x0200
-
 		# read bytes from file into RAM
 		with open(filename, "rb") as f:
 			byte = f.read(1)
