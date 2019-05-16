@@ -187,6 +187,9 @@ class cpu:
 					# wrap the screen edge to edge 
 					x %= 64
 					y %= 32
+					if (self.keys[0x0]):
+						print("({}, {})".format(x, y))
+
 
 					# set bits on screen
 					set_before = self.display[x + 64*y]
@@ -257,7 +260,6 @@ class cpu:
 			return False
 
 		return True	
-
 
 
 

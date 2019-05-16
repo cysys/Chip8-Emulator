@@ -38,13 +38,12 @@ BLACK = (0, 0, 0)
 def draw_screen(DISPLAYSURF, chip):
 	px_w = DISPLAYSURF.get_width() / 64
 	px_h = DISPLAYSURF.get_height() /32
-
-	DISPLAYSURF.fill(BLACK)
-
 	for x in range(64):
 		for  y in range(32):
 			if(chip.display)[x + 64 * y] != 0:
 				pygame.draw.rect(DISPLAYSURF, WHITE,(x * px_w, y * px_h, px_w, px_h))
+			else:
+				pygame.draw.rect(DISPLAYSURF, BLACK,(x * px_w, y * px_h, px_w, px_h))
 
 def main():
 	header()
@@ -52,9 +51,6 @@ def main():
 	pygame.init()
 
 	chip = cpu()
-
-	
-	#filename = sys.argv[1]
 	
 	filename = askopenfilename(initialdir=os.getcwd(),filetypes =[("Chip8 ROM","*.c8")],title = "Choose a file.")
 
@@ -62,7 +58,7 @@ def main():
 	DISPLAYSURF = pygame.display.set_mode((640, 320))
 	pygame.display.set_caption('Chip8 Emulator |  |^anda')
 	chip.load_rom(filename)
-
+	#DISPLAYSURF.fill(BLACK)
 	on = True
 
 	while on:
@@ -87,7 +83,7 @@ def main():
 
 		draw_screen(DISPLAYSURF, chip)
 		pygame.display.update()
-		#pygame.time.delay()
+		pygame.time.delay(1)
 
 
 if __name__ == '__main__':
