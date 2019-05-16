@@ -1,6 +1,6 @@
 import sys
 import pygame
-from pygame import * 
+
 
 from emulation import cpu
 
